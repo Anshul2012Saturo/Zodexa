@@ -1,0 +1,538 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Your Zodiac Result</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            color: white;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #08001c,
+                    #24105c,
+                    #08001c
+                );
+
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 25px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .result {
+            width: 850px;
+            max-width: 90%;
+
+            margin: 40px auto;
+            padding: 35px;
+
+            background: rgba(255,255,255,0.1);
+
+            border-radius: 20px;
+        }
+
+        .symbol {
+            font-size: 100px;
+        }
+
+        .sign {
+            font-size: 45px;
+            margin: 10px;
+        }
+
+        .description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 18px;
+
+            margin-top: 30px;
+        }
+
+        .card {
+
+            padding: 20px;
+
+            background: rgba(255,255,255,0.08);
+
+            border-radius: 15px;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .icon {
+            font-size: 35px;
+        }
+
+        .card p {
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        button {
+
+            margin-top: 30px;
+
+            padding: 14px 25px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background: #8067ff;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #9b86ff;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🌌 Your Zodiac Profile</h1>
+
+</header>
+
+
+<div class="result">
+
+    <div class="symbol" id="symbol"></div>
+
+    <h2 id="sign"></h2>
+
+    <p id="hello"></p>
+
+    <p class="description" id="description"></p>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">🌍</div>
+            <h3>Element</h3>
+            <p id="element"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">💎</div>
+            <h3>Birthstone</h3>
+            <p id="birthstone"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🪐</div>
+            <h3>Ruling Planet</h3>
+            <p id="planet"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">💪</div>
+            <h3>Strengths</h3>
+            <p id="strengths"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">⚠️</div>
+            <h3>Weaknesses</h3>
+            <p id="weaknesses"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">❤️</div>
+            <h3>Love Style</h3>
+            <p id="love"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🤝</div>
+            <h3>Compatibility</h3>
+            <p id="compatibility"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🔢</div>
+            <h3>Lucky Number</h3>
+            <p id="number"></p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🎨</div>
+            <h3>Lucky Color</h3>
+            <p id="color"></p>
+        </div>
+
+    </div>
+
+
+    <button onclick="goBack()">
+        🔙 Try Another Birthday
+    </button>
+
+</div>
+
+
+<script>
+
+    var name = localStorage.getItem("name");
+    var date = localStorage.getItem("date");
+
+
+    if (name == null || date == null) {
+
+        window.location.href = "index.html";
+
+    }
+
+
+    var birthday = new Date(date);
+
+    var day = birthday.getDate();
+    var month = birthday.getMonth() + 1;
+
+
+    var sign = "";
+    var symbol = "";
+    var element = "";
+    var birthstone = "";
+    var planet = "";
+    var strengths = "";
+    var weaknesses = "";
+    var love = "";
+    var compatibility = "";
+    var number = "";
+    var color = "";
+    var description = "";
+
+
+    if (
+        (month == 3 && day >= 21) ||
+        (month == 4 && day <= 19)
+    ) {
+
+        sign = "Aries";
+        symbol = "♈";
+        element = "Fire";
+        birthstone = "Diamond";
+        planet = "Mars";
+        strengths = "Courageous, energetic, confident";
+        weaknesses = "Impatient, impulsive";
+        love = "Passionate and energetic";
+        compatibility = "Leo, Sagittarius, Gemini";
+        number = "1, 9";
+        color = "Red";
+        description = "Traditionally associated with confidence, energy and courage.";
+
+    }
+
+    else if (
+        (month == 4 && day >= 20) ||
+        (month == 5 && day <= 20)
+    ) {
+
+        sign = "Taurus";
+        symbol = "♉";
+        element = "Earth";
+        birthstone = "Emerald";
+        planet = "Venus";
+        strengths = "Patient, reliable, practical";
+        weaknesses = "Stubborn, possessive";
+        love = "Loyal and caring";
+        compatibility = "Virgo, Capricorn, Cancer";
+        number = "2, 6";
+        color = "Green";
+        description = "Traditionally associated with patience, reliability and determination.";
+
+    }
+
+    else if (
+        (month == 5 && day >= 21) ||
+        (month == 6 && day <= 20)
+    ) {
+
+        sign = "Gemini";
+        symbol = "♊";
+        element = "Air";
+        birthstone = "Pearl";
+        planet = "Mercury";
+        strengths = "Curious, social, adaptable";
+        weaknesses = "Restless, indecisive";
+        love = "Playful and communicative";
+        compatibility = "Libra, Aquarius, Aries";
+        number = "3, 5";
+        color = "Yellow";
+        description = "Traditionally associated with curiosity, communication and adaptability.";
+
+    }
+
+    else if (
+        (month == 6 && day >= 21) ||
+        (month == 7 && day <= 22)
+    ) {
+
+        sign = "Cancer";
+        symbol = "♋";
+        element = "Water";
+        birthstone = "Ruby";
+        planet = "Moon";
+        strengths = "Caring, loyal, protective";
+        weaknesses = "Sensitive, moody";
+        love = "Caring and emotional";
+        compatibility = "Scorpio, Pisces, Taurus";
+        number = "2, 7";
+        color = "Silver";
+        description = "Traditionally associated with caring, loyalty and sensitivity.";
+
+    }
+
+    else if (
+        (month == 7 && day >= 23) ||
+        (month == 8 && day <= 22)
+    ) {
+
+        sign = "Leo";
+        symbol = "♌";
+        element = "Fire";
+        birthstone = "Peridot";
+        planet = "Sun";
+        strengths = "Confident, creative, generous";
+        weaknesses = "Proud, stubborn";
+        love = "Warm and expressive";
+        compatibility = "Aries, Sagittarius, Gemini";
+        number = "1, 4";
+        color = "Gold";
+        description = "Traditionally associated with confidence, creativity and generosity.";
+
+    }
+
+    else if (
+        (month == 8 && day >= 23) ||
+        (month == 9 && day <= 22)
+    ) {
+
+        sign = "Virgo";
+        symbol = "♍";
+        element = "Earth";
+        birthstone = "Sapphire";
+        planet = "Mercury";
+        strengths = "Practical, organized, thoughtful";
+        weaknesses = "Overthinking, perfectionist";
+        love = "Loyal and thoughtful";
+        compatibility = "Taurus, Capricorn, Cancer";
+        number = "5, 6";
+        color = "Green";
+        description = "Traditionally associated with organization and practicality.";
+
+    }
+
+    else if (
+        (month == 9 && day >= 23) ||
+        (month == 10 && day <= 22)
+    ) {
+
+        sign = "Libra";
+        symbol = "♎";
+        element = "Air";
+        birthstone = "Opal";
+        planet = "Venus";
+        strengths = "Friendly, diplomatic, fair";
+        weaknesses = "Indecisive";
+        love = "Romantic and caring";
+        compatibility = "Gemini, Aquarius, Leo";
+        number = "6, 9";
+        color = "Blue";
+        description = "Traditionally associated with balance, diplomacy and cooperation.";
+
+    }
+
+    else if (
+        (month == 10 && day >= 23) ||
+        (month == 11 && day <= 21)
+    ) {
+
+        sign = "Scorpio";
+        symbol = "♏";
+        element = "Water";
+        birthstone = "Topaz";
+        planet = "Pluto";
+        strengths = "Determined, loyal, focused";
+        weaknesses = "Secretive, jealous";
+        love = "Deep and passionate";
+        compatibility = "Cancer, Pisces, Virgo";
+        number = "8, 11";
+        color = "Red";
+        description = "Traditionally associated with determination and intensity.";
+
+    }
+
+    else if (
+        (month == 11 && day >= 22) ||
+        (month == 12 && day <= 21)
+    ) {
+
+        sign = "Sagittarius";
+        symbol = "♐";
+        element = "Fire";
+        birthstone = "Turquoise";
+        planet = "Jupiter";
+        strengths = "Optimistic, adventurous, honest";
+        weaknesses = "Impatient, blunt";
+        love = "Adventurous and honest";
+        compatibility = "Aries, Leo, Libra";
+        number = "3, 7";
+        color = "Purple";
+        description = "Traditionally associated with optimism and adventure.";
+
+    }
+
+    else if (
+        (month == 12 && day >= 22) ||
+        (month == 1 && day <= 19)
+    ) {
+
+        sign = "Capricorn";
+        symbol = "♑";
+        element = "Earth";
+        birthstone = "Garnet";
+        planet = "Saturn";
+        strengths = "Disciplined, responsible, ambitious";
+        weaknesses = "Serious, stubborn";
+        love = "Loyal and dependable";
+        compatibility = "Taurus, Virgo, Scorpio";
+        number = "4, 8";
+        color = "Brown";
+        description = "Traditionally associated with discipline and ambition.";
+
+    }
+
+    else if (
+        (month == 1 && day >= 20) ||
+        (month == 2 && day <= 18)
+    ) {
+
+        sign = "Aquarius";
+        symbol = "♒";
+        element = "Air";
+        birthstone = "Amethyst";
+        planet = "Uranus";
+        strengths = "Creative, independent, original";
+        weaknesses = "Unpredictable, detached";
+        love = "Independent and friendly";
+        compatibility = "Gemini, Libra, Sagittarius";
+        number = "4, 7";
+        color = "Blue";
+        description = "Traditionally associated with originality and independence.";
+
+    }
+
+    else {
+
+        sign = "Pisces";
+        symbol = "♓";
+        element = "Water";
+        birthstone = "Aquamarine";
+        planet = "Neptune";
+        strengths = "Kind, creative, compassionate";
+        weaknesses = "Sensitive, idealistic";
+        love = "Romantic and caring";
+        compatibility = "Cancer, Scorpio, Taurus";
+        number = "3, 7";
+        color = "Sea Green";
+        description = "Traditionally associated with imagination and compassion.";
+
+    }
+
+
+    document.getElementById("hello").innerHTML =
+        "Hello, " + name + "!";
+
+
+    document.getElementById("symbol").innerHTML =
+        symbol;
+
+    document.getElementById("sign").innerHTML =
+        sign;
+
+    document.getElementById("description").innerHTML =
+        description;
+
+    document.getElementById("element").innerHTML =
+        element;
+
+    document.getElementById("birthstone").innerHTML =
+        birthstone;
+
+    document.getElementById("planet").innerHTML =
+        planet;
+
+    document.getElementById("strengths").innerHTML =
+        strengths;
+
+    document.getElementById("weaknesses").innerHTML =
+        weaknesses;
+
+    document.getElementById("love").innerHTML =
+        love;
+
+    document.getElementById("compatibility").innerHTML =
+        compatibility;
+
+    document.getElementById("number").innerHTML =
+        number;
+
+    document.getElementById("color").innerHTML =
+        color;
+
+
+    function goBack() {
+
+        window.location.href = "index.html";
+
+    }
+
+</script>
+
+</body>
+</html>
+```

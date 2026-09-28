@@ -1,77 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Zodiac Universe</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             color: white;
             text-align: center;
-            background: radial-gradient(circle at top, #24245c, #090914 65%);
+
+            background:
+                radial-gradient(circle at top, #302060, #080812 70%);
             min-height: 100vh;
         }
 
-        /* Stars */
-
-        .stars {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .stars::before,
-        .stars::after {
-            content: "";
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            box-shadow:
-                50px 80px white,
-                150px 120px white,
-                250px 40px white,
-                350px 180px white,
-                450px 90px white,
-                550px 150px white,
-                650px 50px white,
-                750px 200px white,
-                850px 100px white,
-                950px 170px white,
-                1050px 70px white,
-                1150px 130px white;
-            animation: twinkle 3s infinite alternate;
-        }
-
-        .stars::after {
-            top: 250px;
-            left: 100px;
-            animation-delay: 1s;
-        }
-
-        @keyframes twinkle {
-            from {
-                opacity: 0.3;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Header */
-
         header {
-            padding: 30px 15px;
-            background: rgba(10, 10, 30, 0.8);
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding: 30px;
+            background: rgba(0,0,0,0.3);
         }
 
         header h1 {
@@ -83,429 +35,177 @@
             color: #bbb;
         }
 
-        /* Main Box */
+        .box {
+            width: 450px;
+            max-width: 90%;
 
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: 50px auto;
-        }
+            margin: 70px auto;
 
-        .finder {
+            padding: 40px;
+
             background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(100, 100, 255, 0.2);
+
+            border-radius: 25px;
+
+            box-shadow: 0 0 40px rgba(100,80,255,0.25);
         }
 
-        .finder h2 {
+        .box h2 {
             font-size: 28px;
         }
 
-        /* Input */
-
         input {
+            width: 90%;
+
             padding: 15px;
-            border-radius: 10px;
+
+            margin: 12px;
+
             border: none;
-            font-size: 17px;
-            margin: 10px;
+
+            border-radius: 10px;
+
+            background: #15152b;
+
+            color: white;
+
+            font-size: 16px;
         }
 
         button {
-            padding: 14px 25px;
-            margin: 8px;
+            margin-top: 20px;
+
+            padding: 15px 30px;
+
             border: none;
-            border-radius: 10px;
-            font-size: 16px;
+
+            border-radius: 30px;
+
+            background: linear-gradient(
+                90deg,
+                #6c63ff,
+                #a45cff
+            );
+
+            color: white;
+
+            font-size: 17px;
+
             cursor: pointer;
+
             transition: 0.3s;
         }
 
-        .find {
-            background: #6c63ff;
-            color: white;
-        }
-
-        .find:hover {
-            background: #8a83ff;
+        button:hover {
             transform: scale(1.05);
         }
 
-        .reset {
-            background: #333;
-            color: white;
-        }
-
-        .reset:hover {
-            background: #555;
-        }
-
-        /* Result */
-
-        #result {
-            margin-top: 35px;
-        }
-
-        .zodiac-symbol {
-            font-size: 100px;
-            animation: float 3s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        .zodiac-name {
-            font-size: 38px;
-            margin: 10px;
-        }
-
-        .description {
-            color: #ccc;
-            font-size: 18px;
-        }
-
-        /* Information Cards */
-
-        .cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .card {
-            width: 220px;
-            padding: 22px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 15px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.14);
-        }
-
-        .card-icon {
-            font-size: 35px;
-        }
-
-        .card h3 {
-            margin: 10px;
-        }
-
-        .card p {
-            color: #ccc;
-        }
-
-        /* Footer */
-
         footer {
-            margin-top: 70px;
+            margin-top: 80px;
+
             padding: 25px;
-            background: rgba(10, 10, 25, 0.8);
+
+            background: rgba(0,0,0,0.4);
+
             color: #aaa;
         }
 
-        /* Mobile */
-
-        @media (max-width: 600px) {
-
-            header h1 {
-                font-size: 30px;
-            }
-
-            .finder {
-                padding: 20px;
-            }
-
-            .zodiac-symbol {
-                font-size: 80px;
-            }
-
-            .zodiac-name {
-                font-size: 30px;
-            }
-
-            .card {
-                width: 100%;
-            }
-        }
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="stars"></div>
 
-    <header>
+<header>
 
-        <h1>🌌 Zodiac Universe</h1>
+    <h1>🌌 Zodiac Universe</h1>
 
-        <p>Discover your Western Zodiac Sign</p>
+    <p>
+        Discover your Zodiac personality
+    </p>
 
-    </header>
+</header>
 
 
-    <div class="container">
+<div class="box">
 
-        <div class="finder">
+    <h2>🔮 Discover Your Zodiac</h2>
 
-            <h2>🔮 Find Your Zodiac Sign</h2>
+    <p>
+        Enter your information below
+    </p>
 
-            <p>Enter your date of birth</p>
 
-            <input type="date" id="birthDate">
+    <input
+        type="text"
+        id="name"
+        placeholder="Enter your name">
 
-            <br>
 
-            <button class="find" onclick="findZodiac()">
-                ✨ Find My Zodiac
-            </button>
+    <input
+        type="date"
+        id="birthDate">
 
-            <button class="reset" onclick="resetPage()">
-                🔄 Reset
-            </button>
 
-            <div id="result"></div>
+    <button onclick="discoverZodiac()">
 
-        </div>
+        ✨ Discover My Zodiac
 
-    </div>
+    </button>
 
 
-    <footer>
+    <p id="error"></p>
 
-        <p>🌌 Zodiac Universe © 2026</p>
+</div>
 
-        <p>Explore the world of the Zodiac</p>
 
-    </footer>
+<footer>
 
+    <p>
+        🌌 Zodiac Universe © 2026
+    </p>
 
-    <script>
+    <p>
+        Astrology information is for entertainment.
+    </p>
 
-        function findZodiac() {
+</footer>
 
-            var date = document.getElementById("birthDate").value;
 
-            if (date == "") {
+<script>
 
-                document.getElementById("result").innerHTML =
-                    "<p>Please enter your date of birth.</p>";
+function discoverZodiac() {
 
-                return;
-            }
+    var name =
+        document.getElementById("name").value;
 
-            var birthday = new Date(date);
+    var date =
+        document.getElementById("birthDate").value;
 
-            var day = birthday.getDate();
-            var month = birthday.getMonth() + 1;
 
-            var sign = "";
-            var symbol = "";
-            var element = "";
-            var birthstone = "";
-            var description = "";
+    if (name == "" || date == "") {
 
-            if ((month == 3 && day >= 21) ||
-                (month == 4 && day <= 19)) {
+        document.getElementById("error").innerHTML =
+            "⚠️ Please enter your name and date of birth.";
 
-                sign = "Aries";
-                symbol = "♈";
-                element = "Fire";
-                birthstone = "Diamond";
-                description =
-                    "Confident, energetic and courageous.";
+        return;
 
-            }
+    }
 
-            else if ((month == 4 && day >= 20) ||
-                     (month == 5 && day <= 20)) {
 
-                sign = "Taurus";
-                symbol = "♉";
-                element = "Earth";
-                birthstone = "Emerald";
-                description =
-                    "Patient, reliable and hardworking.";
+    localStorage.setItem("userName", name);
 
-            }
+    localStorage.setItem("birthDate", date);
 
-            else if ((month == 5 && day >= 21) ||
-                     (month == 6 && day <= 20)) {
 
-                sign = "Gemini";
-                symbol = "♊";
-                element = "Air";
-                birthstone = "Pearl";
-                description =
-                    "Curious, social and intelligent.";
-
-            }
+    window.location.href = "result.html";
 
-            else if ((month == 6 && day >= 21) ||
-                     (month == 7 && day <= 22)) {
-
-                sign = "Cancer";
-                symbol = "♋";
-                element = "Water";
-                birthstone = "Ruby";
-                description =
-                    "Caring, emotional and protective.";
+}
 
-            }
+</script>
 
-            else if ((month == 7 && day >= 23) ||
-                     (month == 8 && day <= 22)) {
-
-                sign = "Leo";
-                symbol = "♌";
-                element = "Fire";
-                birthstone = "Peridot";
-                description =
-                    "Confident, creative and friendly.";
-
-            }
-
-            else if ((month == 8 && day >= 23) ||
-                     (month == 9 && day <= 22)) {
-
-                sign = "Virgo";
-                symbol = "♍";
-                element = "Earth";
-                birthstone = "Sapphire";
-                description =
-                    "Organized, practical and thoughtful.";
-
-            }
-
-            else if ((month == 9 && day >= 23) ||
-                     (month == 10 && day <= 22)) {
-
-                sign = "Libra";
-                symbol = "♎";
-                element = "Air";
-                birthstone = "Opal";
-                description =
-                    "Balanced, friendly and fair-minded.";
-
-            }
-
-            else if ((month == 10 && day >= 23) ||
-                     (month == 11 && day <= 21)) {
-
-                sign = "Scorpio";
-                symbol = "♏";
-                element = "Water";
-                birthstone = "Topaz";
-                description =
-                    "Determined, passionate and focused.";
-
-            }
-
-            else if ((month == 11 && day >= 22) ||
-                     (month == 12 && day <= 21)) {
-
-                sign = "Sagittarius";
-                symbol = "♐";
-                element = "Fire";
-                birthstone = "Turquoise";
-                description =
-                    "Adventurous, optimistic and curious.";
-
-            }
-
-            else if ((month == 12 && day >= 22) ||
-                     (month == 1 && day <= 19)) {
-
-                sign = "Capricorn";
-                symbol = "♑";
-                element = "Earth";
-                birthstone = "Garnet";
-                description =
-                    "Responsible, disciplined and ambitious.";
-
-            }
-
-            else if ((month == 1 && day >= 20) ||
-                     (month == 2 && day <= 18)) {
-
-                sign = "Aquarius";
-                symbol = "♒";
-                element = "Air";
-                birthstone = "Amethyst";
-                description =
-                    "Independent, creative and original.";
-
-            }
-
-            else {
-
-                sign = "Pisces";
-                symbol = "♓";
-                element = "Water";
-                birthstone = "Aquamarine";
-                description =
-                    "Kind, imaginative and compassionate.";
-            }
-
-
-            document.getElementById("result").innerHTML =
-
-                "<div class='zodiac-symbol'>" +
-                symbol +
-                "</div>" +
-
-                "<div class='zodiac-name'>" +
-                sign +
-                "</div>" +
-
-                "<p class='description'>" +
-                description +
-                "</p>" +
-
-                "<div class='cards'>" +
-
-                "<div class='card'>" +
-                "<div class='card-icon'>🌍</div>" +
-                "<h3>Element</h3>" +
-                "<p>" + element + "</p>" +
-                "</div>" +
-
-                "<div class='card'>" +
-                "<div class='card-icon'>💎</div>" +
-                "<h3>Birthstone</h3>" +
-                "<p>" + birthstone + "</p>" +
-                "</div>" +
-
-                "</div>";
-        }
-
-
-        function resetPage() {
-
-            document.getElementById("birthDate").value = "";
-
-            document.getElementById("result").innerHTML = "";
-
-        }
-
-    </script>
 
 </body>
 </html>
