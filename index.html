@@ -4,7 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zodexas</title>
+
+    <title>Zodexa - Zodiac Sign Finder</title>
+
+    <meta name="description" content="Explore your Western and Vedic Sun Signs with Zodexa. Discover zodiac symbols, elements, birthstones, and personality details.">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Zodexa">
+    <meta property="og:title" content="Zodexa - The Cosmic Journal">
+    <meta property="og:description" content="Discover your Western and Vedic Sun Signs, elements, and birthstones with Zodexa.">
+    <meta property="og:url" content="https://anshul2012saturo.github.io/Zodexa/">
 
     <style>
         * {
@@ -13,26 +23,24 @@
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at 20% 20%, #6d28d9 0%, transparent 25%),
-                radial-gradient(circle at 80% 30%, #2563eb 0%, transparent 25%),
-                radial-gradient(circle at 50% 100%, #9333ea 0%, transparent 30%),
-                #050510;
             overflow-x: hidden;
+            background:
+                radial-gradient(circle at 20% 20%, #392064, transparent 35%),
+                radial-gradient(circle at 80% 30%, #153d7a, transparent 35%),
+                #050510;
         }
+
+        /* STARS */
 
         .stars {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
         }
 
         .star {
@@ -49,23 +57,163 @@
                 opacity: 0.2;
                 transform: scale(1);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1.8);
             }
         }
 
+        /* PLANETS */
+
+        .planet-stage {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .planet {
+            position: absolute;
+            width: clamp(70px, 11vw, 135px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            opacity: 0;
+            background: var(--planet);
+
+            box-shadow:
+                0 0 30px var(--glow),
+                inset -18px -12px 25px rgba(0, 0, 0, 0.5);
+
+            animation: planetTravel 40s linear infinite;
+            animation-delay: var(--delay);
+        }
+
+        .mercury {
+            --delay: 0s;
+            --planet: radial-gradient(circle at 30% 30%, #eee, #888 55%, #333);
+            --glow: rgba(200, 200, 200, 0.6);
+        }
+
+        .venus {
+            --delay: 5s;
+            --planet: radial-gradient(circle at 30% 30%, #fff0b0, #d6a052 50%, #754326);
+            --glow: rgba(255, 190, 100, 0.6);
+        }
+
+        .earth {
+            --delay: 10s;
+            --planet: radial-gradient(circle at 30% 30%, #a7f3d0, #2387db 45%, #10204d);
+            --glow: rgba(60, 150, 255, 0.7);
+        }
+
+        .mars {
+            --delay: 15s;
+            --planet: radial-gradient(circle at 30% 30%, #ffc0a0, #d44b32 50%, #651b18);
+            --glow: rgba(255, 90, 60, 0.6);
+        }
+
+        .jupiter {
+            --delay: 20s;
+            --planet: repeating-linear-gradient(
+                0deg,
+                #b9784e 0px,
+                #f2d0a0 10px,
+                #a95e3b 18px,
+                #e7bd86 26px
+            );
+            --glow: rgba(235, 160, 100, 0.6);
+        }
+
+        .saturn {
+            --delay: 25s;
+            --planet: radial-gradient(circle at 30% 30%, #ffe9a6, #c69a54 55%, #65482d);
+            --glow: rgba(255, 210, 120, 0.6);
+        }
+
+        .saturn::after {
+            content: "";
+            position: absolute;
+            width: 155%;
+            height: 35%;
+            top: 33%;
+            left: -28%;
+            border: 6px solid rgba(245, 215, 160, 0.8);
+            border-radius: 50%;
+            transform: rotate(-20deg);
+        }
+
+        .uranus {
+            --delay: 30s;
+            --planet: radial-gradient(circle at 30% 30%, #d6ffff, #68d4dc 50%, #226b91);
+            --glow: rgba(90, 230, 240, 0.6);
+        }
+
+        .neptune {
+            --delay: 35s;
+            --planet: radial-gradient(circle at 30% 30%, #a5baff, #3559e8 50%, #111b69);
+            --glow: rgba(80, 100, 255, 0.7);
+        }
+
+        @keyframes planetTravel {
+            0% {
+                left: -15%;
+                top: 8%;
+                opacity: 0;
+                transform: scale(0.6) rotate(0deg);
+            }
+
+            10% {
+                opacity: 0.55;
+            }
+
+            30% {
+                left: 25%;
+                top: 72%;
+                opacity: 0.5;
+                transform: scale(1) rotate(100deg);
+            }
+
+            55% {
+                left: 60%;
+                top: 12%;
+                opacity: 0.5;
+                transform: scale(0.85) rotate(220deg);
+            }
+
+            80% {
+                left: 88%;
+                top: 65%;
+                opacity: 0.45;
+                transform: scale(1.1) rotate(300deg);
+            }
+
+            92% {
+                opacity: 0;
+            }
+
+            100% {
+                left: 110%;
+                top: 30%;
+                opacity: 0;
+                transform: scale(0.6) rotate(360deg);
+            }
+        }
+
+        /* SHOOTING STAR */
+
         .shooting-star {
             position: fixed;
             width: 120px;
             height: 2px;
+            top: 10%;
+            left: -150px;
             background: linear-gradient(90deg, transparent, white);
             transform: rotate(-35deg);
-            top: 15%;
-            left: -150px;
-            animation: shooting 7s linear infinite;
-            z-index: -1;
+            animation: shooting 8s linear infinite;
             pointer-events: none;
+            z-index: 0;
         }
 
         @keyframes shooting {
@@ -74,140 +222,353 @@
                 top: 10%;
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
             }
+
             50% {
                 left: 110%;
                 top: 60%;
                 opacity: 0;
             }
+
             100% {
                 left: 110%;
                 opacity: 0;
             }
         }
 
+        /* CONTENT */
+
+        header,
+        main,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+
         header {
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(10px);
+            padding: 30px 15px;
+            background: rgba(0, 0, 0, 0.38);
+            backdrop-filter: blur(4px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         header h1 {
             margin: 0;
-            font-size: 42px;
-            text-shadow: 0 0 15px #8b5cf6;
+            font-size: 45px;
+            text-shadow: 0 0 18px #8b5cf6;
         }
 
         header p {
-            color: #cfcfe8;
-            font-size: 17px;
+            color: #d5d2ef;
+            font-size: 18px;
         }
 
+        /* MAIN BOX */
+
         .box {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            width: 430px;
-            max-width: 88%;
-            margin: 70px auto;
-            padding: 35px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 40px rgba(110, 70, 255, 0.3);
+            width: 850px;
+            max-width: 94%;
+            margin: 65px auto;
+            padding: 45px;
+            background: rgba(15, 15, 32, 0.76);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            box-shadow: 0 0 45px rgba(110, 70, 255, 0.3);
         }
 
         .box h2 {
-            font-size: 28px;
+            font-size: 34px;
         }
 
+        .box > p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* INPUT */
+
         input {
-            padding: 14px;
-            margin: 15px 0;
             width: 100%;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 18px;
+            margin: 18px 0;
+            border-radius: 12px;
+            border: 1px solid #555070;
             background: #111126;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #9b5cff;
+            box-shadow: 0 0 15px #7c3aed;
         }
 
         input::placeholder {
             color: #aaaad0;
         }
 
-        input:focus {
-            outline: none;
-            box-shadow: 0 0 15px #7c3aed;
-        }
+        /* BUTTON */
 
         button {
-            padding: 14px 28px;
+            padding: 17px 32px;
             border: none;
-            border-radius: 30px;
+            border-radius: 35px;
             cursor: pointer;
-            font-size: 16px;
             color: white;
+            font-size: 18px;
             background: linear-gradient(90deg, #6d28d9, #2563eb);
-            box-shadow: 0 0 20px rgba(100, 80, 255, 0.4);
+            box-shadow: 0 0 22px rgba(100, 80, 255, 0.4);
             transition: 0.3s;
         }
 
         button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(120, 90, 255, 0.7);
+            box-shadow: 0 0 32px rgba(120, 90, 255, 0.7);
         }
+
+        /* SIGN RESULTS */
 
         #result {
-            margin-top: 30px;
-            font-size: 18px;
+            margin-top: 35px;
         }
 
-        .sign {
-            font-size: 90px;
+        .sign-container {
+            display: flex;
+            gap: 22px;
+            justify-content: center;
+            align-items: stretch;
+            margin-top: 30px;
+        }
+
+        .sign-card {
+            flex: 1;
+            min-width: 0;
+            min-height: 280px;
+            padding: 30px 15px;
+            border-radius: 23px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(100, 70, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .sign-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 0 35px rgba(130, 90, 255, 0.45);
+        }
+
+        .western-card {
+            border-top: 4px solid #9b5cff;
+        }
+
+        .vedic-card {
+            border-top: 4px solid #ffb300;
+        }
+
+        .sign-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #c4b5fd;
+            line-height: 1.4;
+        }
+
+        .vedic-card .sign-title {
+            color: #ffd34e;
+        }
+
+        .sign-symbol {
+            font-size: 105px;
+            margin: 18px 0;
             animation: floating 3s ease-in-out infinite;
             text-shadow: 0 0 25px #a78bfa;
+        }
+
+        .vedic-card .sign-symbol {
+            text-shadow: 0 0 25px #f59e0b;
+        }
+
+        .sign-name {
+            font-size: 28px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
         }
 
         @keyframes floating {
             0%, 100% {
                 transform: translateY(0);
             }
+
             50% {
-                transform: translateY(-12px);
+                transform: translateY(-10px);
             }
         }
 
+        /* INFORMATION */
+
         .info {
+            margin-top: 30px;
+            padding: 25px;
             text-align: left;
-            margin-top: 25px;
             line-height: 2;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
+            font-size: 19px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
         }
 
         .info b {
             color: #c4b5fd;
         }
 
-        footer {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            margin-top: 80px;
-            color: #aaa;
+        .info-columns {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
+
+        .info-column {
+            min-width: 0;
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .info-line {
+            margin-bottom: 12px;
+            min-width: 0;
+            text-align: center;
+        }
+
+        .info-column .info-line > b {
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .birthstone-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            width: 100%;
+            max-width: 100%;
+            margin: 8px auto 0;
+            text-align: center;
+        }
+
+        .birthstone-name {
+            display: block;
+            width: 100%;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+            text-align: center;
+        }
+
+        .info-birthstone-photo {
+            display: block;
+            width: 150px;
+            max-width: 100%;
+            height: 105px;
+            object-fit: cover;
+            object-position: center;
+            align-self: center;
+            margin: 0 auto 4px;
+            border-radius: 7px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.35);
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 70px;
+            padding: 25px;
+            color: #aaa;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* MOBILE */
 
         @media (max-width: 600px) {
             header h1 {
-                font-size: 30px;
+                font-size: 34px;
+            }
+
+            header p {
+                font-size: 15px;
             }
 
             .box {
-                margin-top: 40px;
-                padding: 25px;
+                padding: 28px 18px;
+                margin: 40px auto;
+            }
+
+            .box h2 {
+                font-size: 27px;
+            }
+
+            .box > p {
+                font-size: 16px;
+            }
+
+            .sign-container {
+                gap: 12px;
+            }
+
+            .sign-card {
+                min-height: 215px;
+                padding: 20px 8px;
+            }
+
+            .sign-title {
+                font-size: 13px;
+            }
+
+            .sign-symbol {
+                font-size: 62px;
+            }
+
+            .sign-name {
+                font-size: 19px;
+            }
+
+            .info {
+                font-size: 16px;
+                padding: 18px;
+            }
+
+            .info-columns {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .info-birthstone-photo {
+                width: 135px;
+                height: 95px;
+            }
+
+            .planet {
+                width: 65px;
+            }
+        }
+
+        /* ACCESSIBILITY */
+
+        @media (prefers-reduced-motion: reduce) {
+            .star,
+            .planet,
+            .shooting-star,
+            .sign-symbol {
+                animation: none;
+            }
+
+            .planet {
+                opacity: 0.2;
             }
         }
     </style>
@@ -216,28 +577,43 @@
 <body>
 
     <div class="stars" id="stars"></div>
+
     <div class="shooting-star"></div>
+
+    <div class="planet-stage" aria-hidden="true">
+        <div class="planet mercury"></div>
+        <div class="planet venus"></div>
+        <div class="planet earth"></div>
+        <div class="planet mars"></div>
+        <div class="planet jupiter"></div>
+        <div class="planet saturn"></div>
+        <div class="planet uranus"></div>
+        <div class="planet neptune"></div>
+    </div>
 
     <header>
         <h1>♈ Zodexa ♓</h1>
-        <p>✨ Discover Your Western Sun Sign ✨</p>
+        <p>✨ Discover Your Western &amp; Vedic Sun Sign ✨</p>
     </header>
 
-    <div class="box">
+    <main class="box">
         <h2>🔮 Zodiac Sign Finder</h2>
-        <p>Enter your birthday to discover your zodiac sign.</p>
+        <p>Enter your birthday to discover your zodiac signs.</p>
 
         <input
             type="text"
             id="birthDate"
             placeholder="Enter date and month (e.g. 5 October)"
             autocomplete="off"
-            aria-label="Birth date and month">
+            aria-label="Birth date and month"
+        >
 
-        <button onclick="findZodiac()">✨ Find My Zodiac</button>
+        <button type="button" onclick="findZodiac()">
+            ✨ Find My Zodiac
+        </button>
 
         <div id="result" aria-live="polite"></div>
-    </div>
+    </main>
 
     <footer>
         <p>🌌 Zodexa - Zodiac Sign Finder</p>
@@ -245,11 +621,12 @@
     </footer>
 
     <script>
-        // CREATE STARS
-        var stars = document.getElementById("stars");
+        /* CREATE TWINKLING STARS */
 
-        for (var i = 0; i < 150; i++) {
-            var star = document.createElement("div");
+        const stars = document.getElementById("stars");
+
+        for (let i = 0; i < 180; i++) {
+            const star = document.createElement("div");
             star.className = "star";
             star.style.left = Math.random() * 100 + "%";
             star.style.top = Math.random() * 100 + "%";
@@ -257,31 +634,57 @@
             stars.appendChild(star);
         }
 
-        // ZODIAC FUNCTION
-        function findZodiac() {
-            var dateText = document.getElementById("birthDate").value.trim();
-            var result = document.getElementById("result");
+        /* BIRTHSTONE IMAGE LINKS */
 
-            if (dateText === "") {
+        function getStoneImage(stone) {
+            const images = {
+                /*
+                  As requested:
+                  Diamond name -> Aquamarine photo
+                  Aquamarine name -> Diamond photo
+                */
+                Diamond: "https://upload.wikimedia.org/wikipedia/commons/3/36/Aquamarine_%28GeoDIL_number_-_2731%29.jpg",
+                Aquamarine: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Diamond-214884.jpg",
+
+                Emerald: "https://loremflickr.com/240/180/emerald,gemstone",
+                Pearl: "https://loremflickr.com/240/180/pearl,gemstone",
+                Ruby: "https://loremflickr.com/240/180/ruby,gemstone",
+                Peridot: "https://loremflickr.com/240/180/peridot,gemstone",
+                Sapphire: "https://loremflickr.com/240/180/sapphire,gemstone",
+                Opal: "https://loremflickr.com/240/180/opal,gemstone",
+                Topaz: "https://loremflickr.com/240/180/topaz,gemstone",
+                Turquoise: "https://loremflickr.com/240/180/turquoise,gemstone",
+                Garnet: "https://loremflickr.com/240/180/garnet,gemstone",
+                Amethyst: "https://loremflickr.com/240/180/amethyst,gemstone"
+            };
+
+            return images[stone] ||
+                "https://placehold.co/240x180/17152d/ffffff?text=Birthstone";
+        }
+
+        /* FIND ZODIAC */
+
+        function findZodiac() {
+            const dateText = document.getElementById("birthDate").value.trim();
+            const result = document.getElementById("result");
+
+            if (!dateText) {
                 result.innerHTML =
                     "<p style='color:#ff8888'>⚠️ Please enter your date and month.</p>";
                 return;
             }
 
-            // Accept formats such as 5 October, October 5, 5/10 or 5-10
-            var parts = dateText.match(
-                /^(\d{1,2})[\s\/-]+([a-zA-Z]+|\d{1,2})$/
+            let parts = dateText.match(
+                /^(\d{1,2})[\s/-]+([a-zA-Z]+|\d{1,2})$/
             );
 
             if (!parts) {
                 parts = dateText.match(
-                    /^([a-zA-Z]+)[\s\/-]+(\d{1,2})$/
+                    /^([a-zA-Z]+)[\s/-]+(\d{1,2})$/
                 );
 
                 if (parts) {
-                    var temp = parts[1];
-                    parts[1] = parts[2];
-                    parts[2] = temp;
+                    parts = [parts[0], parts[2], parts[1]];
                 }
             }
 
@@ -291,37 +694,39 @@
                 return;
             }
 
-            var day = Number(parts[1]);
-            var monthText = parts[2].toLowerCase();
+            const day = Number(parts[1]);
+            const monthText = parts[2].toLowerCase();
 
-            var monthNames = [
+            const monthNames = [
                 "january", "february", "march", "april",
                 "may", "june", "july", "august",
                 "september", "october", "november", "december"
             ];
 
-            var month = Number(monthText);
+            let month = Number(monthText);
 
-            if (isNaN(month)) {
+            if (Number.isNaN(month)) {
                 month = monthNames.indexOf(monthText) + 1;
 
                 if (month === 0) {
-                    month = monthNames.findIndex(function(name) {
-                        return name.startsWith(monthText);
-                    }) + 1;
+                    month = monthNames.findIndex(name =>
+                        name.startsWith(monthText)
+                    ) + 1;
                 }
             }
 
-            var daysInMonth = [
+            const daysInMonth = [
                 31, 29, 31, 30, 31, 30,
                 31, 31, 30, 31, 30, 31
             ];
 
             if (
                 !Number.isInteger(day) ||
-                day < 1 || day > 31 ||
+                day < 1 ||
+                day > 31 ||
                 !Number.isInteger(month) ||
-                month < 1 || month > 12 ||
+                month < 1 ||
+                month > 12 ||
                 day > daysInMonth[month - 1]
             ) {
                 result.innerHTML =
@@ -329,124 +734,77 @@
                 return;
             }
 
-            var sign = "";
-            var symbol = "";
-            var element = "";
-            var birthstone = "";
-            var description = "";
+            /* WESTERN SUN SIGN */
 
-            // ARIES
-            if ((month === 3 && day >= 21) ||
-                (month === 4 && day <= 19)) {
+            let sign, symbol, element, birthstone, description;
+
+            if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
                 sign = "Aries";
                 symbol = "♈";
                 element = "Fire";
                 birthstone = "Diamond";
                 description = "Confident, energetic and courageous.";
-            }
-
-            // TAURUS
-            else if ((month === 4 && day >= 20) ||
-                     (month === 5 && day <= 20)) {
+            } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
                 sign = "Taurus";
                 symbol = "♉";
                 element = "Earth";
                 birthstone = "Emerald";
                 description = "Patient, reliable and hardworking.";
-            }
-
-            // GEMINI
-            else if ((month === 5 && day >= 21) ||
-                     (month === 6 && day <= 20)) {
+            } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
                 sign = "Gemini";
                 symbol = "♊";
                 element = "Air";
                 birthstone = "Pearl";
                 description = "Curious, social and intelligent.";
-            }
-
-            // CANCER
-            else if ((month === 6 && day >= 21) ||
-                     (month === 7 && day <= 22)) {
+            } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
                 sign = "Cancer";
                 symbol = "♋";
                 element = "Water";
                 birthstone = "Ruby";
                 description = "Caring, emotional and protective.";
-            }
-
-            // LEO
-            else if ((month === 7 && day >= 23) ||
-                     (month === 8 && day <= 22)) {
+            } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
                 sign = "Leo";
                 symbol = "♌";
                 element = "Fire";
                 birthstone = "Peridot";
                 description = "Confident, creative and friendly.";
-            }
-
-            // VIRGO
-            else if ((month === 8 && day >= 23) ||
-                     (month === 9 && day <= 22)) {
+            } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
                 sign = "Virgo";
                 symbol = "♍";
                 element = "Earth";
                 birthstone = "Sapphire";
                 description = "Organized, practical and thoughtful.";
-            }
-
-            // LIBRA
-            else if ((month === 9 && day >= 23) ||
-                     (month === 10 && day <= 22)) {
+            } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
                 sign = "Libra";
                 symbol = "♎";
                 element = "Air";
                 birthstone = "Opal";
                 description = "Balanced, friendly and fair-minded.";
-            }
-
-            // SCORPIO
-            else if ((month === 10 && day >= 23) ||
-                     (month === 11 && day <= 21)) {
+            } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
                 sign = "Scorpio";
                 symbol = "♏";
                 element = "Water";
                 birthstone = "Topaz";
                 description = "Determined, passionate and focused.";
-            }
-
-            // SAGITTARIUS
-            else if ((month === 11 && day >= 22) ||
-                     (month === 12 && day <= 21)) {
+            } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
                 sign = "Sagittarius";
                 symbol = "♐";
                 element = "Fire";
                 birthstone = "Turquoise";
                 description = "Adventurous, optimistic and curious.";
-            }
-
-            // CAPRICORN
-            else if ((month === 12 && day >= 22) ||
-                     (month === 1 && day <= 19)) {
+            } else if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
                 sign = "Capricorn";
                 symbol = "♑";
                 element = "Earth";
                 birthstone = "Garnet";
                 description = "Responsible, disciplined and ambitious.";
-            }
-
-            // AQUARIUS
-            else if ((month === 1 && day >= 20) ||
-                     (month === 2 && day <= 18)) {
+            } else if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
                 sign = "Aquarius";
                 symbol = "♒";
                 element = "Air";
                 birthstone = "Amethyst";
                 description = "Independent, creative and original.";
-            }
-
-            // PISCES
-            else {
+            } else {
                 sign = "Pisces";
                 symbol = "♓";
                 element = "Water";
@@ -454,18 +812,152 @@
                 description = "Kind, imaginative and compassionate.";
             }
 
-            // DISPLAY RESULT
-            result.innerHTML =
-                "<div class='sign'>" + symbol + "</div>" +
-                "<h2>" + sign + "</h2>" +
-                "<div class='info'>" +
-                "<b>🌍 Element:</b> " + element + "<br>" +
-                "<b>💎 Birthstone:</b> " + birthstone + "<br>" +
-                "<b>📝 Personality:</b> " + description +
-                "</div>";
+            /* VEDIC SUN SIGN - APPROXIMATE DATE RANGES */
+
+            let vedicSign, vedicSymbol;
+
+            if ((month === 4 && day >= 14) || (month === 5 && day <= 14)) {
+                vedicSign = "Mesha (Aries)";
+                vedicSymbol = "♈";
+            } else if ((month === 5 && day >= 15) || (month === 6 && day <= 14)) {
+                vedicSign = "Vrishabha (Taurus)";
+                vedicSymbol = "♉";
+            } else if ((month === 6 && day >= 15) || (month === 7 && day <= 15)) {
+                vedicSign = "Mithuna (Gemini)";
+                vedicSymbol = "♊";
+            } else if ((month === 7 && day >= 16) || (month === 8 && day <= 15)) {
+                vedicSign = "Karka (Cancer)";
+                vedicSymbol = "♋";
+            } else if ((month === 8 && day >= 16) || (month === 9 && day <= 15)) {
+                vedicSign = "Simha (Leo)";
+                vedicSymbol = "♌";
+            } else if ((month === 9 && day >= 16) || (month === 10 && day <= 15)) {
+                vedicSign = "Kanya (Virgo)";
+                vedicSymbol = "♍";
+            } else if ((month === 10 && day >= 16) || (month === 11 && day <= 14)) {
+                vedicSign = "Tula (Libra)";
+                vedicSymbol = "♎";
+            } else if ((month === 11 && day >= 15) || (month === 12 && day <= 14)) {
+                vedicSign = "Vrishchika (Scorpio)";
+                vedicSymbol = "♏";
+            } else if ((month === 12 && day >= 15) || (month === 1 && day <= 13)) {
+                vedicSign = "Dhanu (Sagittarius)";
+                vedicSymbol = "♐";
+            } else if ((month === 1 && day >= 14) || (month === 2 && day <= 12)) {
+                vedicSign = "Makara (Capricorn)";
+                vedicSymbol = "♑";
+            } else if ((month === 2 && day >= 13) || (month === 3 && day <= 14)) {
+                vedicSign = "Kumbha (Aquarius)";
+                vedicSymbol = "♒";
+            } else {
+                vedicSign = "Meena (Pisces)";
+                vedicSymbol = "♓";
+            }
+
+            /* VEDIC ELEMENT AND BIRTHSTONE */
+
+            const vedicDetails = {
+                "Mesha (Aries)": ["Fire", "Diamond"],
+                "Vrishabha (Taurus)": ["Earth", "Emerald"],
+                "Mithuna (Gemini)": ["Air", "Pearl"],
+                "Karka (Cancer)": ["Water", "Ruby"],
+                "Simha (Leo)": ["Fire", "Peridot"],
+                "Kanya (Virgo)": ["Earth", "Sapphire"],
+                "Tula (Libra)": ["Air", "Opal"],
+                "Vrishchika (Scorpio)": ["Water", "Topaz"],
+                "Dhanu (Sagittarius)": ["Fire", "Turquoise"],
+                "Makara (Capricorn)": ["Earth", "Garnet"],
+                "Kumbha (Aquarius)": ["Air", "Amethyst"],
+                "Meena (Pisces)": ["Water", "Aquamarine"]
+            };
+
+            const [vedicElement, vedicBirthstone] = vedicDetails[vedicSign];
+
+            /* DISPLAY BOTH SIGNS SIDE BY SIDE */
+
+            result.innerHTML = `
+                <div class="sign-container">
+
+                    <div class="sign-card western-card">
+                        <div class="sign-title">🌞 WESTERN SUN SIGN</div>
+                        <div class="sign-symbol">${symbol}</div>
+                        <div class="sign-name">${sign}</div>
+                    </div>
+
+                    <div class="sign-card vedic-card">
+                        <div class="sign-title">🕉️ VEDIC SUN SIGN</div>
+                        <div class="sign-symbol">${vedicSymbol}</div>
+                        <div class="sign-name">${vedicSign}</div>
+                    </div>
+
+                </div>
+
+                <div class="info">
+                    <div class="info-columns">
+
+                        <div class="info-column western-card">
+                            <div class="info-line">
+                                <b>🌍 Western Element:</b><br>
+                                ${element}
+                            </div>
+
+                            <div class="info-line">
+                                <b>💎 Western Birthstone:</b><br>
+
+                                <div class="birthstone-display">
+                                    <span class="birthstone-name">${birthstone}</span>
+
+                                    <img
+                                        class="info-birthstone-photo"
+                                        src="${getStoneImage(birthstone)}"
+                                        alt="${birthstone} birthstone photo"
+                                        loading="lazy"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/240x180/17152d/ffffff?text=Birthstone';"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-column vedic-card">
+                            <div class="info-line">
+                                <b>🪔 Vedic Element:</b><br>
+                                ${vedicElement}
+                            </div>
+
+                            <div class="info-line">
+                                <b>💎 Vedic Birthstone:</b><br>
+
+                                <div class="birthstone-display">
+                                    <span class="birthstone-name">${vedicBirthstone}</span>
+
+                                    <img
+                                        class="info-birthstone-photo"
+                                        src="${getStoneImage(vedicBirthstone)}"
+                                        alt="${vedicBirthstone} birthstone photo"
+                                        loading="lazy"
+                                        onerror="this.onerror=null;this.src='https://placehold.co/240x180/17152d/ffffff?text=Birthstone';"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top:18px;">
+                        <b>📝 Personality:</b>
+                        ${description}
+                    </div>
+
+                    <p style="font-size:13px;color:#bbb;margin-top:12px;line-height:1.5;">
+                        Note: Vedic sign dates and birthstones are approximate.
+                        A traditional Vedic reading may require a full birth chart.
+                    </p>
+                </div>
+            `;
         }
 
-        // Allow Enter key to find the zodiac sign
+        /* ENTER KEY SUPPORT */
+
         document.getElementById("birthDate").addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
                 findZodiac();
