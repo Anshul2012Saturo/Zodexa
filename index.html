@@ -727,7 +727,7 @@
                 Saturn: "https://commons.wikimedia.org/wiki/Special:FilePath/Saturn_during_Equinox.jpg"
             };
 
-            return images[planet] || images.Jupiter;
+            return images[planet] || "";
         }
 
         /* FIND ZODIAC */
@@ -968,9 +968,13 @@
                 Pisces: "Jupiter"
             };
 
-            const westernRulingPlanet = rulingPlanets[sign];
+            // Western sign has Hindi name in brackets, so extract English name.
+            const westernRashi = sign.split("(")[0].trim();
+            const westernRulingPlanet = rulingPlanets[westernRashi];
+
+            // Extract English name from Vedic sign, e.g. Aries from Mesha (Aries).
             const vedicRashi = vedicSign.match(/\(([^)]+)\)/)?.[1];
-            const vedicRulingPlanet = rulingPlanets[vedicRashi] || "Jupiter";
+            const vedicRulingPlanet = rulingPlanets[vedicRashi];
 
             /* DISPLAY BOTH SIGNS SIDE BY SIDE */
 
