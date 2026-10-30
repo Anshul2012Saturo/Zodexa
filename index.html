@@ -1,19 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Zodexa - Zodiac Sign Finder</title>
+    <title>The Cosmic Journal</title>
 
-    <meta name="description" content="Explore your Western and Vedic Sun Signs with Zodexa. Discover zodiac symbols, elements, birthstones, and personality details.">
+    <meta name="description" content="Explore your Western and Vedic Sun Signs with Zodexa. Discover zodiac symbols, elements, birthstones, and ruling planets.">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Zodexa">
-    <meta property="og:title" content="Zodexa - The Cosmic Journal">
-    <meta property="og:description" content="Discover your Western and Vedic Sun Signs, elements, and birthstones with Zodexa.">
+    <meta property="og:site_name" content="The Cosmic Journal">
+    <meta property="og:title" content="Zodexa">
+    <meta property="og:description" content="Discover your Western and Vedic Sun Signs, elements, birthstones, and ruling planets with Zodexa.">
     <meta property="og:url" content="https://anshul2012saturo.github.io/Zodexa/">
 
     <style>
@@ -483,6 +482,50 @@
             box-shadow: 0 0 10px rgba(167, 139, 250, 0.35);
         }
 
+        /* RULING PLANET PHOTOS */
+
+        .ruling-planets-section {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .ruling-planet-card {
+            min-width: 0;
+            padding: 18px 12px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 14px;
+            background: rgba(255,255,255,.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .ruling-planet-card b {
+            color: #e0d4ff;
+        }
+
+        .ruling-planet-name {
+            display: block;
+            font-size: 21px;
+            font-weight: bold;
+            color: #f0e7ff;
+        }
+
+        .ruling-planet-photo {
+            display: block;
+            width: 150px;
+            max-width: 100%;
+            height: 110px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 9px;
+            border: 1px solid rgba(255,255,255,.35);
+            box-shadow: 0 0 12px rgba(167,139,250,.25);
+        }
+
         /* FOOTER */
 
         footer {
@@ -542,6 +585,15 @@
                 padding: 18px;
             }
 
+            .ruling-planets-section {
+                gap: 8px;
+            }
+
+            .ruling-planet-photo {
+                width: 125px;
+                height: 95px;
+            }
+
             .info-columns {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -592,8 +644,8 @@
     </div>
 
     <header>
-        <h1>♈ Zodexa ♓</h1>
-        <p>✨ Discover Your Western &amp; Vedic Sun Sign ✨</p>
+        <h1>♈ Zodexa - The Cosmic Journal ♓</h1>
+        <p>✨ Discover Your Western and Vedic Sun Sign ✨</p>
     </header>
 
     <main class="box">
@@ -634,32 +686,48 @@
             stars.appendChild(star);
         }
 
-        /* BIRTHSTONE IMAGE LINKS */
+        /* BIRTHSTONE IMAGE LINKS - Wikimedia Commons */
 
         function getStoneImage(stone) {
             const images = {
-                /*
-                  As requested:
-                  Diamond name -> Aquamarine photo
-                  Aquamarine name -> Diamond photo
-                */
-                Diamond: "https://upload.wikimedia.org/wikipedia/commons/3/36/Aquamarine_%28GeoDIL_number_-_2731%29.jpg",
-                Aquamarine: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Diamond-214884.jpg",
+                Diamond: "https://ion.bluenile.com/sgmdirect/photoID/41008819/Diamond/25569190/Diamond-round-2-Carat_0_first_.jpg",
+                Aquamarine: "https://commons.wikimedia.org/wiki/Special:FilePath/Fancy_cut_aquamarine_1.jpg",
+                Emerald: "https://commons.wikimedia.org/wiki/Special:FilePath/Cut_Emerald.jpg",
+                Pearl: "https://commons.wikimedia.org/wiki/Special:FilePath/Pearl.JPG",
+                Ruby: "https://commons.wikimedia.org/wiki/Special:FilePath/Ruby%20gem.JPG",
+                Peridot: "https://commons.wikimedia.org/wiki/Special:FilePath/Peridot%20with%20ludwigite%20inclusion%20-%20faceted%20gemstone%20peridot%20from%20Pakistan.jpg",
+                Sapphire: "https://commons.wikimedia.org/wiki/Special:FilePath/Blue%20sapphire.jpg",
 
-                Emerald: "https://loremflickr.com/240/180/emerald,gemstone",
-                Pearl: "https://loremflickr.com/240/180/pearl,gemstone",
-                Ruby: "https://loremflickr.com/240/180/ruby,gemstone",
-                Peridot: "https://loremflickr.com/240/180/peridot,gemstone",
-                Sapphire: "https://loremflickr.com/240/180/sapphire,gemstone",
-                Opal: "https://loremflickr.com/240/180/opal,gemstone",
-                Topaz: "https://loremflickr.com/240/180/topaz,gemstone",
-                Turquoise: "https://loremflickr.com/240/180/turquoise,gemstone",
-                Garnet: "https://loremflickr.com/240/180/garnet,gemstone",
-                Amethyst: "https://loremflickr.com/240/180/amethyst,gemstone"
+                "Blue Sapphire": "https://commons.wikimedia.org/wiki/Special:FilePath/Four%20man-made%20faceted%20blue%20sapphires%201.jpg",
+
+                "Yellow Sapphire": "https://commons.wikimedia.org/wiki/Special:FilePath/Yellow%20sapphire%20oval%20gemstone.JPG",
+
+                "Red Coral": "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20coral%20gemstone.jpg",
+
+                Opal: "https://commons.wikimedia.org/wiki/Special:FilePath/Opal.jpg",
+                Topaz: "https://commons.wikimedia.org/wiki/Special:FilePath/Topazgem.JPG",
+                Turquoise: "https://commons.wikimedia.org/wiki/Special:FilePath/Turquoise%20%282932194265%29.jpg",
+                Garnet: "https://commons.wikimedia.org/wiki/Special:FilePath/Garnet%20cut.JPG",
+                Amethyst: "https://commons.wikimedia.org/wiki/Special:FilePath/Amethyst%20Gems.jpg"
             };
 
-            return images[stone] ||
-                "https://placehold.co/240x180/17152d/ffffff?text=Birthstone";
+            return images[stone] || images.Opal;
+        }
+
+        /* RULING PLANET IMAGE LINKS */
+
+        function getPlanetImage(planet) {
+            const images = {
+                Sun: "https://commons.wikimedia.org/wiki/Special:FilePath/Sun_in_H-alpha.jpg",
+                Moon: "https://commons.wikimedia.org/wiki/Special:FilePath/FullMoon2010.jpg",
+                Mars: "https://commons.wikimedia.org/wiki/Special:FilePath/OSIRIS_Mars_true_color.jpg",
+                Mercury: "https://commons.wikimedia.org/wiki/Special:FilePath/Mercury_in_true_color.jpg",
+                Venus: "https://commons.wikimedia.org/wiki/Special:FilePath/Venus_globe.jpg",
+                Jupiter: "https://commons.wikimedia.org/wiki/Special:FilePath/Jupiter.jpg",
+                Saturn: "https://commons.wikimedia.org/wiki/Special:FilePath/Saturn_during_Equinox.jpg"
+            };
+
+            return images[planet] || images.Jupiter;
         }
 
         /* FIND ZODIAC */
@@ -739,77 +807,76 @@
             let sign, symbol, element, birthstone, description;
 
             if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
-                sign = "Aries";
+                sign = "Aries(Mesh)";
                 symbol = "♈";
                 element = "Fire";
                 birthstone = "Diamond";
-                description = "Confident, energetic and courageous.";
+
             } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
-                sign = "Taurus";
+                sign = "Taurus(Vrishabh)";
                 symbol = "♉";
                 element = "Earth";
                 birthstone = "Emerald";
-                description = "Patient, reliable and hardworking.";
+
             } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
-                sign = "Gemini";
+                sign = "Gemini(Mithun)";
                 symbol = "♊";
                 element = "Air";
                 birthstone = "Pearl";
-                description = "Curious, social and intelligent.";
+
             } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
-                sign = "Cancer";
+                sign = "Cancer(Kark)";
                 symbol = "♋";
                 element = "Water";
                 birthstone = "Ruby";
-                description = "Caring, emotional and protective.";
+
             } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
-                sign = "Leo";
+                sign = "Leo(Singh)";
                 symbol = "♌";
                 element = "Fire";
                 birthstone = "Peridot";
-                description = "Confident, creative and friendly.";
+
             } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
-                sign = "Virgo";
+                sign = "Virgo(Kanya)";
                 symbol = "♍";
                 element = "Earth";
                 birthstone = "Sapphire";
-                description = "Organized, practical and thoughtful.";
+
             } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
-                sign = "Libra";
+                sign = "Libra(Tula)";
                 symbol = "♎";
                 element = "Air";
                 birthstone = "Opal";
-                description = "Balanced, friendly and fair-minded.";
+
             } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
-                sign = "Scorpio";
+                sign = "Scorpio(Vrishchik)";
                 symbol = "♏";
                 element = "Water";
                 birthstone = "Topaz";
-                description = "Determined, passionate and focused.";
+
             } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
-                sign = "Sagittarius";
+                sign = "Sagittarius(Dhanu)";
                 symbol = "♐";
                 element = "Fire";
                 birthstone = "Turquoise";
-                description = "Adventurous, optimistic and curious.";
+
             } else if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
-                sign = "Capricorn";
+                sign = "Capricorn(Makar)";
                 symbol = "♑";
                 element = "Earth";
                 birthstone = "Garnet";
-                description = "Responsible, disciplined and ambitious.";
+
             } else if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
-                sign = "Aquarius";
+                sign = "Aquarius(Kumbh)";
                 symbol = "♒";
                 element = "Air";
                 birthstone = "Amethyst";
-                description = "Independent, creative and original.";
+
             } else {
-                sign = "Pisces";
+                sign = "Pisces(Meen)";
                 symbol = "♓";
                 element = "Water";
                 birthstone = "Aquamarine";
-                description = "Kind, imaginative and compassionate.";
             }
 
             /* VEDIC SUN SIGN - APPROXIMATE DATE RANGES */
@@ -819,36 +886,47 @@
             if ((month === 4 && day >= 14) || (month === 5 && day <= 14)) {
                 vedicSign = "Mesha (Aries)";
                 vedicSymbol = "♈";
+
             } else if ((month === 5 && day >= 15) || (month === 6 && day <= 14)) {
                 vedicSign = "Vrishabha (Taurus)";
                 vedicSymbol = "♉";
+
             } else if ((month === 6 && day >= 15) || (month === 7 && day <= 15)) {
                 vedicSign = "Mithuna (Gemini)";
                 vedicSymbol = "♊";
+
             } else if ((month === 7 && day >= 16) || (month === 8 && day <= 15)) {
                 vedicSign = "Karka (Cancer)";
                 vedicSymbol = "♋";
+
             } else if ((month === 8 && day >= 16) || (month === 9 && day <= 15)) {
                 vedicSign = "Simha (Leo)";
                 vedicSymbol = "♌";
+
             } else if ((month === 9 && day >= 16) || (month === 10 && day <= 15)) {
                 vedicSign = "Kanya (Virgo)";
                 vedicSymbol = "♍";
+
             } else if ((month === 10 && day >= 16) || (month === 11 && day <= 14)) {
                 vedicSign = "Tula (Libra)";
                 vedicSymbol = "♎";
+
             } else if ((month === 11 && day >= 15) || (month === 12 && day <= 14)) {
                 vedicSign = "Vrishchika (Scorpio)";
                 vedicSymbol = "♏";
+
             } else if ((month === 12 && day >= 15) || (month === 1 && day <= 13)) {
                 vedicSign = "Dhanu (Sagittarius)";
                 vedicSymbol = "♐";
+
             } else if ((month === 1 && day >= 14) || (month === 2 && day <= 12)) {
                 vedicSign = "Makara (Capricorn)";
                 vedicSymbol = "♑";
+
             } else if ((month === 2 && day >= 13) || (month === 3 && day <= 14)) {
                 vedicSign = "Kumbha (Aquarius)";
                 vedicSymbol = "♒";
+
             } else {
                 vedicSign = "Meena (Pisces)";
                 vedicSymbol = "♓";
@@ -857,21 +935,42 @@
             /* VEDIC ELEMENT AND BIRTHSTONE */
 
             const vedicDetails = {
-                "Mesha (Aries)": ["Fire", "Diamond"],
-                "Vrishabha (Taurus)": ["Earth", "Emerald"],
-                "Mithuna (Gemini)": ["Air", "Pearl"],
-                "Karka (Cancer)": ["Water", "Ruby"],
-                "Simha (Leo)": ["Fire", "Peridot"],
-                "Kanya (Virgo)": ["Earth", "Sapphire"],
-                "Tula (Libra)": ["Air", "Opal"],
-                "Vrishchika (Scorpio)": ["Water", "Topaz"],
-                "Dhanu (Sagittarius)": ["Fire", "Turquoise"],
-                "Makara (Capricorn)": ["Earth", "Garnet"],
-                "Kumbha (Aquarius)": ["Air", "Amethyst"],
-                "Meena (Pisces)": ["Water", "Aquamarine"]
+                "Mesha (Aries)": ["Fire", "Red Coral"],
+                "Vrishabha (Taurus)": ["Earth", "Diamond"],
+                "Mithuna (Gemini)": ["Air", "Emerald"],
+                "Karka (Cancer)": ["Water", "Pearl"],
+                "Simha (Leo)": ["Fire", "Ruby"],
+                "Kanya (Virgo)": ["Earth", "Emerald"],
+                "Tula (Libra)": ["Air", "Diamond"],
+                "Vrishchika (Scorpio)": ["Water", "Red Coral"],
+                "Dhanu (Sagittarius)": ["Fire", "Yellow Sapphire"],
+                "Makara (Capricorn)": ["Earth", "Blue Sapphire"],
+                "Kumbha (Aquarius)": ["Air", "Blue Sapphire"],
+                "Meena (Pisces)": ["Water", "Yellow Sapphire"]
             };
 
             const [vedicElement, vedicBirthstone] = vedicDetails[vedicSign];
+
+            /* WESTERN AND VEDIC RULING PLANETS */
+
+            const rulingPlanets = {
+                Aries: "Mars",
+                Taurus: "Venus",
+                Gemini: "Mercury",
+                Cancer: "Moon",
+                Leo: "Sun",
+                Virgo: "Mercury",
+                Libra: "Venus",
+                Scorpio: "Mars",
+                Sagittarius: "Jupiter",
+                Capricorn: "Saturn",
+                Aquarius: "Saturn",
+                Pisces: "Jupiter"
+            };
+
+            const westernRulingPlanet = rulingPlanets[sign];
+            const vedicRashi = vedicSign.match(/\(([^)]+)\)/)?.[1];
+            const vedicRulingPlanet = rulingPlanets[vedicRashi] || "Jupiter";
 
             /* DISPLAY BOTH SIGNS SIDE BY SIDE */
 
@@ -912,7 +1011,7 @@
                                         src="${getStoneImage(birthstone)}"
                                         alt="${birthstone} birthstone photo"
                                         loading="lazy"
-                                        onerror="this.onerror=null;this.src='https://placehold.co/240x180/17152d/ffffff?text=Birthstone';"
+                                        onerror="this.onerror=null;this.style.display='none';"
                                     >
                                 </div>
                             </div>
@@ -935,7 +1034,7 @@
                                         src="${getStoneImage(vedicBirthstone)}"
                                         alt="${vedicBirthstone} birthstone photo"
                                         loading="lazy"
-                                        onerror="this.onerror=null;this.src='https://placehold.co/240x180/17152d/ffffff?text=Birthstone';"
+                                        onerror="this.onerror=null;this.style.display='none';"
                                     >
                                 </div>
                             </div>
@@ -943,9 +1042,40 @@
 
                     </div>
 
-                    <div style="margin-top:18px;">
-                        <b>📝 Personality:</b>
-                        ${description}
+                    <div class="ruling-planets-section">
+
+                        <div class="ruling-planet-card western-card">
+                            <b>🪐 Western Ruling Planet</b>
+
+                            <span class="ruling-planet-name">
+                                ${westernRulingPlanet}
+                            </span>
+
+                            <img
+                                class="ruling-planet-photo"
+                                src="${getPlanetImage(westernRulingPlanet)}"
+                                alt="${westernRulingPlanet} photo"
+                                loading="lazy"
+                                onerror="this.onerror=null;this.alt='Planet photo unavailable';"
+                            >
+                        </div>
+
+                        <div class="ruling-planet-card vedic-card">
+                            <b>🪐 Vedic Ruling Planet</b>
+
+                            <span class="ruling-planet-name">
+                                ${vedicRulingPlanet}
+                            </span>
+
+                            <img
+                                class="ruling-planet-photo"
+                                src="${getPlanetImage(vedicRulingPlanet)}"
+                                alt="${vedicRulingPlanet} photo"
+                                loading="lazy"
+                                onerror="this.onerror=null;this.alt='Planet photo unavailable';"
+                            >
+                        </div>
+
                     </div>
 
                     <p style="font-size:13px;color:#bbb;margin-top:12px;line-height:1.5;">
